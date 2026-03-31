@@ -1,0 +1,15 @@
+[package]
+name = "isolum"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = [
+    "crates/whpx-bindings",
+    "crates/vmm-core", "crates/payload",
+]
+
+[dependencies]
+whpx-bindings = { path = "crates/whpx-bindings" }
+vmm-core = { path = "crates/vmm-core" }
+windows = "0.62.2"

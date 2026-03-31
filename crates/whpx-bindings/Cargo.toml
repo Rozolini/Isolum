@@ -1,0 +1,12 @@
+[package]
+# Metadata for the raw WHPX FFI bindings crate.
+name = "whpx-bindings"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Official Windows API crate. Exposes Hypervisor platform APIs and foundational types.
+windows = { version = "0.62.2", features = [
+    "Win32_System_Hypervisor",
+    "Win32_Foundation"
+]}

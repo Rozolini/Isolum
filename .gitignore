@@ -1,0 +1,23 @@
+# Compiled Rust artifacts.
+/target/
+
+# Editor and IDE configurations.
+.vscode/
+.idea/
+*.swp
+*.swo
+*.rs.bk
+
+# OS-generated files.
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary test payloads and generated images.
+test_payload.bin
+*.img
+*.iso

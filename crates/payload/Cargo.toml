@@ -1,0 +1,16 @@
+[package]
+# Core metadata for the bare-metal guest payload.
+name = "payload"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Empty: relies on core/no_std only.
+
+[[bin]]
+# Binary target configuration.
+name = "payload"
+path = "src/main.rs"
+# Disable testing and benchmarking for the bare-metal environment.
+test = false
+bench = false

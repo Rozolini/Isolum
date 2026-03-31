@@ -1,0 +1,36 @@
+name: Loom
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+          targets: x86_64-unknown-none
+
+      - name: Build hypervisor core
+        run: cargo build --workspace --exclude payload --all-targets --all-features
+
+      - name: Build guest payload
+        run: cargo build -p payload --target x86_64-unknown-none
+
+      - name: Run Loom concurrency tests
+        env:
+          RUSTFLAGS: "--cfg loom"
+        # --release minimizes execution time for permutation trees
+        # --test-threads=1 prevents WHPX partition collisions
+        run: cargo test --workspace --exclude payload --release --test integration_test -- --test-threads=1

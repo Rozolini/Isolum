@@ -1,0 +1,19 @@
+[package]
+# Core metadata for the hypervisor library.
+name = "vmm-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# ELF format parser for loading guest executables.
+goblin = "0.10.5"
+
+# Raw FFI bindings for the Windows Hypervisor Platform (WHPX) API.
+whpx-bindings = { path = "../whpx-bindings" }
+
+# Official Windows API for WHPX structures, handles, and host memory allocation.
+windows = { version = "0.62.2", features = [
+    "Win32_System_Hypervisor",
+    "Win32_Foundation",
+    "Win32_System_Memory"
+]}

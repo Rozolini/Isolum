@@ -1,0 +1,9 @@
+[build]
+# Target bare-metal x86_64 environment.
+target = "x86_64-unknown-none"
+
+[target.x86_64-unknown-none]
+# Use custom linker script for memory layout.
+rustflags = [
+    "-C", "link-arg=-Tlinker.ld",
+]
